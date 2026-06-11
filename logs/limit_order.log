@@ -1,0 +1,4 @@
+2026-06-11 20:40:56 | INFO     | trading_bot | Placing SELL LIMIT order | symbol=BTCUSDT qty=0.001 price=70000.0 stop_price=None
+2026-06-11 20:40:56 | DEBUG    | trading_bot | REQUEST  POST https://testnet.binancefuture.com/fapi/v1/order | params: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.001, 'price': 70000.0, 'timeInForce': 'GTC', 'timestamp': 1781190657387, 'recvWindow': 10000, 'signature': '...'}
+2026-06-11 20:40:57 | DEBUG    | trading_bot | RESPONSE 200 https://testnet.binancefuture.com/fapi/v1/order | body: {"orderId":14804389330,"symbol":"BTCUSDT","status":"NEW","side":"SELL","type":"LIMIT","price":"70000","origQty":"0.001","executedQty":"0","avgPrice":"0.00000","timeInForce":"GTC","updateTime":1781190657387}
+2026-06-11 20:40:57 | INFO     | trading_bot | Order accepted | orderId=14804389330 status=NEW executedQty=0.0000 avgPrice=None

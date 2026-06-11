@@ -1,0 +1,15 @@
+2026-06-11 14:27:41 | INFO     | trading_bot | Logger works correctly
+2026-06-11 20:36:34 | INFO     | trading_bot | Placing BUY MARKET order | symbol=BTCUSDT qty=0.001 price=None stop_price=None
+2026-06-11 20:36:34 | ERROR    | trading_bot | API error -1021: Timestamp for this request is outside of the recvWindow.
+2026-06-11 20:36:34 | ERROR    | trading_bot | API error: Binance API error -1021: Timestamp for this request is outside of the recvWindow.
+2026-06-11 20:37:27 | INFO     | trading_bot | Placing SELL LIMIT order | symbol=BTCUSDT qty=0.001 price=70000.0 stop_price=None
+2026-06-11 20:37:27 | ERROR    | trading_bot | API error -1021: Timestamp for this request is outside of the recvWindow.
+2026-06-11 20:37:27 | ERROR    | trading_bot | API error: Binance API error -1021: Timestamp for this request is outside of the recvWindow.
+2026-06-11 20:40:24 | INFO     | trading_bot | Placing BUY MARKET order | symbol=BTCUSDT qty=0.001 price=None stop_price=None
+2026-06-11 20:40:24 | INFO     | trading_bot | Order accepted | orderId=14804234455 status=NEW executedQty=0.0000 avgPrice=None
+2026-06-11 20:40:56 | INFO     | trading_bot | Placing SELL LIMIT order | symbol=BTCUSDT qty=0.001 price=70000.0 stop_price=None
+2026-06-11 20:40:57 | INFO     | trading_bot | Order accepted | orderId=14804389330 status=NEW executedQty=0.0000 avgPrice=None
+2026-06-11 21:00:23 | INFO     | trading_bot | Placing SELL LIMIT order | symbol=BTCUSDT qty=0.001 price=80000.0 stop_price=None
+2026-06-11 21:00:23 | INFO     | trading_bot | Order accepted | orderId=14809655196 status=NEW executedQty=0.0000 avgPrice=None
+2026-06-11 21:03:34 | INFO     | trading_bot | Placing SELL LIMIT order | symbol=BTCUSDT qty=0.001 price=80000.0 stop_price=None
+2026-06-11 21:03:34 | INFO     | trading_bot | Order accepted | orderId=14810589411 status=NEW executedQty=0.0000 avgPrice=None
