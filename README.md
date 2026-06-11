@@ -45,18 +45,41 @@ trading_bot/
 3. Navigate to **API Management** → generate a new key pair
 4. Copy your **API Key** and **Secret Key**
 
-### 2. Install dependencies
+### 2. Create and Activate a Virtual Environment (Optional but Recommended)
+
+Using a virtual environment helps isolate project dependencies and ensures a consistent development setup.
+
+**Create a virtual environment**
+
+```bash
+python -m venv venv
+```
+
+**Activate on Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+**Activate on macOS/Linux**
+
+```bash
+source venv/bin/activate
+```
+
+
+### 3. Install dependencies
 
 ```bash
 # Python 3.8+ required
 pip install -r requirements.txt
 ```
 
-### 3. Configure credentials
+### 4. Configure credentials
 
 ```bash
-cp .env.example .env
-# Edit .env and paste your testnet API key and secret
+Create .env
+# In .env file paste your testnet API key and secret
 ```
 
 Your `.env` file should look like:
@@ -96,19 +119,6 @@ python cli.py --symbol BTCUSDT --side BUY --type STOP_MARKET --quantity 0.001 --
 ```bash
 python cli.py --symbol BTCUSDT --side BUY --type LIMIT --quantity 0.001 --price 50000 --dry-run
 ```
-
-**Pass credentials inline (bypasses .env)**
-```bash
-python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001 \
-  --api-key YOUR_KEY --api-secret YOUR_SECRET
-```
-
-**Verbose debug logging**
-```bash
-python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001 --log-level DEBUG
-```
-
----
 
 ## Sample Output
 
@@ -150,12 +160,3 @@ python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001 --log-l
 ```
 
 ---
-
-## Assumptions
-
-1. **Testnet only** — the base URL is hardcoded to `https://testnet.binancefuture.com`. Swap `TESTNET_BASE_URL` in `bot/client.py` for production use (with real money — be careful).
-2. **USDT-M Futures** — only perpetual USDT-margined contracts are targeted; coin-margined (COIN-M) endpoints differ.
-3. **Quantity precision** — the bot sends raw quantity values. If the testnet rejects your order with a precision error, reduce decimal places (e.g., `0.001` → `0.01`).
-4. **GTC time-in-force** — all LIMIT orders use Good-Till-Cancelled.
-5. **No position management** — the bot only places orders; it does not track open positions, PnL, or account balance.
-6. **Dependencies are minimal** — only `requests` and `python-dotenv` are used (no `python-binance` SDK) for transparency and portability.
