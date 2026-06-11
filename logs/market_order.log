@@ -1,4 +1,0 @@
-2026-06-11 20:40:24 | INFO     | trading_bot | Placing BUY MARKET order | symbol=BTCUSDT qty=0.001 price=None stop_price=None
-2026-06-11 20:40:24 | DEBUG    | trading_bot | REQUEST  POST https://testnet.binancefuture.com/fapi/v1/order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.001, 'timestamp': 1781190624911, 'recvWindow': 10000, 'signature': '...'}
-2026-06-11 20:40:24 | DEBUG    | trading_bot | RESPONSE 200 https://testnet.binancefuture.com/fapi/v1/order | body: {"orderId":14804234455,"symbol":"BTCUSDT","status":"NEW","side":"BUY","type":"MARKET","origQty":"0.001","executedQty":"0.0000","avgPrice":null,"updateTime":1781190624911}
-2026-06-11 20:40:24 | INFO     | trading_bot | Order accepted | orderId=14804234455 status=NEW executedQty=0.0000 avgPrice=None
