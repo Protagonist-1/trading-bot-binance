@@ -22,7 +22,7 @@ REQUEST_TIMEOUT = 10  # seconds
 
 
 class BinanceAPIError(Exception):
-    """Raised when Binance returns a non-2xx response or an error payload."""
+    # Raised when Binance returns a non-2xx response or an error payload
 
     def __init__(self, code: int, message: str) -> None:
         self.code = code
@@ -31,10 +31,6 @@ class BinanceAPIError(Exception):
 
 
 class BinanceClient:
-    """
-    Thin wrapper around Binance Futures Testnet REST API.
-    Automatically signs private endpoints with HMAC-SHA256.
-    """
 
     def __init__(self, api_key: str, api_secret: str, base_url: str = TESTNET_BASE_URL) -> None:
         self.api_key = api_key
@@ -43,7 +39,7 @@ class BinanceClient:
         self._session = requests.Session()
         self._session.headers.update({"X-MBX-APIKEY": self.api_key})
 
-    # ── Signing ───────────────────────────────────────────────────────────────
+    #  Signing and timestamp helpers
 
     def _get_server_time(self) -> int:
         """Fetch Binance server time to avoid clock-skew errors."""
@@ -67,7 +63,7 @@ class BinanceClient:
         params["signature"] = signature
         return params
 
-    # ── HTTP helpers ──────────────────────────────────────────────────────────
+    #  HTTP helpers
 
     def _request(
         self,
@@ -114,7 +110,7 @@ class BinanceClient:
 
         return data  # type: ignore[return-value]
 
-    # ── Public API ────────────────────────────────────────────────────────────
+    #  Public API  
 
     def get_exchange_info(self) -> dict[str, Any]:
         return self._request("GET", "/fapi/v1/exchangeInfo")
@@ -122,7 +118,7 @@ class BinanceClient:
     def get_account(self) -> dict[str, Any]:
         return self._request("GET", "/fapi/v2/account", signed=True)
 
-    # ── Order placement ───────────────────────────────────────────────────────
+    #  Order placement  
 
     def place_order(self, **kwargs: Any) -> dict[str, Any]:
         """

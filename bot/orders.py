@@ -1,8 +1,4 @@
-"""
-Order placement logic.
-Builds the correct parameter payload for each order type and
-delegates to BinanceClient for the actual API call.
-"""
+# Order placement logic.
 
 from __future__ import annotations
 
@@ -57,15 +53,8 @@ def place_order(
     price: str | float | None = None,
     stop_price: str | float | None = None,
 ) -> dict[str, Any]:
-    """
-    Validate inputs, build payload, submit order, and return the response.
 
-    Raises:
-        ValueError: on invalid input parameters.
-        BinanceAPIError: on API-level failures.
-        ConnectionError / TimeoutError: on network issues.
-    """
-    # ── Validate ──────────────────────────────────────────────────────────────
+    #  Validate 
     symbol = validate_symbol(symbol)
     side = validate_side(side)
     order_type = validate_order_type(order_type)
@@ -73,7 +62,7 @@ def place_order(
     price = validate_price(price, order_type)
     stop_price = validate_stop_price(stop_price, order_type)
 
-    # ── Build & log request summary ───────────────────────────────────────────
+    #  Build & log request summary 
     payload = _build_payload(symbol, side, order_type, quantity, price, stop_price)
     logger.info(
         "Placing %s %s order | symbol=%s qty=%s price=%s stop_price=%s",
@@ -85,7 +74,7 @@ def place_order(
         stop_price,
     )
 
-    # ── Submit ────────────────────────────────────────────────────────────────
+    #  Submit 
     response = client.place_order(**payload)
     logger.info(
         "Order accepted | orderId=%s status=%s executedQty=%s avgPrice=%s",
@@ -98,7 +87,7 @@ def place_order(
 
 
 def format_order_summary(params: dict[str, Any]) -> str:
-    """Human-readable summary of what is about to be placed."""
+    # Human-readable summary of what is about to be placed
     lines = [
         "─" * 45,
         "  ORDER REQUEST SUMMARY",
@@ -117,7 +106,7 @@ def format_order_summary(params: dict[str, Any]) -> str:
 
 
 def format_order_response(response: dict[str, Any]) -> str:
-    """Human-readable display of the Binance order response."""
+    # Human-readable display of the Binance order response.
     lines = [
         "─" * 45,
         "  ORDER RESPONSE",

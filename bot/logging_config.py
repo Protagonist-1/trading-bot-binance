@@ -30,12 +30,12 @@ def setup_logging(level: str = "INFO") -> logging.Logger:
         datefmt="%Y-%m-%d %H:%M:%S",
     )
 
-    # ── Console handler ──────────────────────────────────────────────────────
+    #  Console handler 
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(formatter)
 
-    # ── File handler (5 MB max, 3 backup files) ───────────────────────────────
+    #  File handler (5 MB max, 3 backup files) 
     file_handler = RotatingFileHandler(
         LOG_FILE, maxBytes=5 * 1024 * 1024, backupCount=3, encoding="utf-8"
     )

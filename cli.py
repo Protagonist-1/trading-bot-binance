@@ -1,13 +1,3 @@
-#!/usr/bin/env python3
-"""
-Trading Bot CLI entry point.
-
-Usage examples:
-  python cli.py --symbol BTCUSDT --side BUY  --type MARKET --quantity 0.001
-  python cli.py --symbol BTCUSDT --side SELL --type LIMIT  --quantity 0.001 --price 50000
-  python cli.py --symbol BTCUSDT --side BUY  --type STOP_MARKET --quantity 0.001 --stop-price 25000
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -32,7 +22,7 @@ load_dotenv()
 logger = setup_logging()
 
 
-# ── Argument parser ───────────────────────────────────────────────────────────
+# ── Argument parser
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -100,7 +90,7 @@ Examples:
     return parser
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ── Main
 
 def main() -> None:
     parser = build_parser()
@@ -109,14 +99,14 @@ def main() -> None:
     # Re-init logger with user-chosen level
     setup_logging(args.log_level)
 
-    # ── Validate credentials ──────────────────────────────────────────────────
+    #  Validate credentials 
     if not args.api_key or not args.api_secret:
         parser.error(
             "API credentials missing. Set BINANCE_API_KEY / BINANCE_API_SECRET "
             "environment variables or pass --api-key / --api-secret."
         )
 
-    # ── Pre-validate inputs early (before hitting the network) ───────────────
+    #  Pre-validate inputs early (before hitting the network) 
     try:
         symbol = validate_symbol(args.symbol)
         side = validate_side(args.side)
@@ -129,7 +119,7 @@ def main() -> None:
         print(f"\n✗  Validation error: {exc}\n")
         sys.exit(1)
 
-    # ── Print request summary ─────────────────────────────────────────────────
+    #  Print request summary 
     summary_params = {
         "symbol": symbol,
         "side": side,
@@ -144,7 +134,7 @@ def main() -> None:
         print("  DRY RUN — order not submitted.\n")
         sys.exit(0)
 
-    # ── Place order ───────────────────────────────────────────────────────────
+    #  Place order 
     client = BinanceClient(api_key=args.api_key, api_secret=args.api_secret)
 
     try:
@@ -170,7 +160,7 @@ def main() -> None:
         print(f"\n✗  Network error: {exc}\n")
         sys.exit(3)
 
-    # ── Print response ────────────────────────────────────────────────────────
+    #  Print response 
     print(format_order_response(response))
     print(f"\n✓  Order placed successfully! Order ID: {response.get('orderId')}\n")
 
